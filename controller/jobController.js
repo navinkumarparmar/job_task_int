@@ -43,17 +43,15 @@ module.exports.getJobs = async function(req,res,next) {
 
         const filter = {};
 
-        if(location) {
-            filter.location = location
-        }
-        if(jobType){
-            filter.jobType = jobType
-        }
+        if(location)  filter.location = location
+    
+        if(jobType)   filter.jobType = jobType
+        
 
         if(minSalary || maxSalary){
             filter.salary = {
                 ...(minSalary && { $gte: minSalary}),
-                ...arguments(maxSalary && {$lte: maxSalary})
+                ...(maxSalary && {$lte: maxSalary})
             }
 
         }
